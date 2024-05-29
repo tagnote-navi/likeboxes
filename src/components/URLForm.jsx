@@ -22,11 +22,7 @@ function URLForm() {
   useEffect(() => {
     console.log(`URL changed to: ${url}`);
     if (url && url.startsWith('http')) {
-      const delayDebounceFn = setTimeout(() => {
-        fetchMetadata(url);
-      }, 500);
-
-      return () => clearTimeout(delayDebounceFn);
+      fetchMetadata(url);
     } else {
       setMetadata(null);
     }
@@ -46,7 +42,6 @@ function URLForm() {
       {metadata && (
         <div className="metadata">
           <h2>{metadata.title}</h2>
-          <p>{metadata.description}</p>
           {metadata.ogImage && <img src={metadata.ogImage} alt="OG Image" />}
         </div>
       )}
